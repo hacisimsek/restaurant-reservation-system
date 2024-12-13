@@ -46,7 +46,7 @@ Restaurant Reservation System is a robust Spring Boot application designed to si
 ### 1. Clone the Repository
 
 ```bash
-git clone <https://github.com/hacisimsek/restaurant-reservation-system.git>
+git clone https://github.com/hacisimsek/restaurant-reservation-system.git
 cd restaurant-reservation-system
 ```
 
