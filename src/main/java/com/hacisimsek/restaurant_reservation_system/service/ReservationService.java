@@ -10,8 +10,12 @@ import java.util.Optional;
 
 @Service
 public class ReservationService {
-    @Autowired
-    private ReservationRepository reservationRepository;
+
+    private final ReservationRepository reservationRepository;
+
+    public ReservationService(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
 
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();

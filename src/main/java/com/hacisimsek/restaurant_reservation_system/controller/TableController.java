@@ -2,7 +2,6 @@ package com.hacisimsek.restaurant_reservation_system.controller;
 
 import com.hacisimsek.restaurant_reservation_system.entity.Table;
 import com.hacisimsek.restaurant_reservation_system.service.TableService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,11 @@ import java.util.Optional;
 @RequestMapping("/api/tables")
 public class TableController {
 
-    @Autowired
-    private TableService tableService;
+    private final TableService tableService;
+
+    public TableController(TableService tableService) {
+        this.tableService = tableService;
+    }
 
     @GetMapping
     public List<Table> getAllTables() {

@@ -2,7 +2,6 @@ package com.hacisimsek.restaurant_reservation_system.controller;
 
 import com.hacisimsek.restaurant_reservation_system.repository.ReservationRepository;
 import com.hacisimsek.restaurant_reservation_system.repository.TableRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,11 +13,14 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminDashboardController {
 
-    @Autowired
-    private ReservationRepository reservationRepository;
+    private final ReservationRepository reservationRepository;
 
-    @Autowired
-    private TableRepository tableRepository;
+    private final TableRepository tableRepository;
+
+    public AdminDashboardController(ReservationRepository reservationRepository, TableRepository tableRepository) {
+        this.reservationRepository = reservationRepository;
+        this.tableRepository = tableRepository;
+    }
 
     @GetMapping("/dashboard")
     public Map<String, Object> getDashboardStats() {

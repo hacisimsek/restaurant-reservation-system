@@ -3,7 +3,6 @@ package com.hacisimsek.restaurant_reservation_system.controller;
 import com.hacisimsek.restaurant_reservation_system.entity.Reservation;
 import com.hacisimsek.restaurant_reservation_system.service.EmailNotificationService;
 import com.hacisimsek.restaurant_reservation_system.service.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,14 @@ import java.util.Optional;
 @RequestMapping("/api/reservations")
 public class ReservationController {
 
-    @Autowired
-    private ReservationService reservationService;
+    private final ReservationService reservationService;
 
-    @Autowired
-    private EmailNotificationService emailNotificationService;
+    private final EmailNotificationService emailNotificationService;
+
+    public ReservationController(ReservationService reservationService, EmailNotificationService emailNotificationService) {
+        this.reservationService = reservationService;
+        this.emailNotificationService = emailNotificationService;
+    }
 
     @GetMapping
     public List<Reservation> getAllReservations() {

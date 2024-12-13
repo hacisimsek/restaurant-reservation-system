@@ -2,7 +2,6 @@ package com.hacisimsek.restaurant_reservation_system.service;
 
 import com.hacisimsek.restaurant_reservation_system.entity.Table;
 import com.hacisimsek.restaurant_reservation_system.repository.TableRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.Optional;
 @Service
 public class TableService {
 
-    @Autowired
-    private TableRepository tableRepository;
+    private final TableRepository tableRepository;
+
+    public TableService(TableRepository tableRepository) {
+        this.tableRepository = tableRepository;
+    }
 
     public List<Table> getAllTables() {
         return tableRepository.findAll();
