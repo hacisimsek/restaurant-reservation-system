@@ -124,6 +124,6 @@ Distributed under the MIT License. See `LICENSE` file for more information.
 
 ## Contact
 
-Project Maintainer - [HACI SIMSEK / hacisimsek23@gmail.com] 
+Project Maintainer - HACI SIMSEK / hacisimsek23@gmail.com
 
-Project Link: [[Repository URL](https://github.com/hacisimsek/restaurant-reservation-system)]
+Project Link: https://github.com/hacisimsek/restaurant-reservation-system
