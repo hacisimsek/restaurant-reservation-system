@@ -1,7 +1,6 @@
 package com.hacisimsek.restaurant_reservation_system.controller;
 
 import com.hacisimsek.restaurant_reservation_system.entity.Reservation;
-import com.hacisimsek.restaurant_reservation_system.repository.ReservationRepository;
 import com.hacisimsek.restaurant_reservation_system.service.EmailNotificationService;
 import com.hacisimsek.restaurant_reservation_system.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.hacisimsek.restaurant_reservation_system.controller;
 
 import com.hacisimsek.restaurant_reservation_system.entity.Table;
-import com.hacisimsek.restaurant_reservation_system.repository.TableRepository;
+import com.hacisimsek.restaurant_reservation_system.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +14,34 @@ import java.util.Optional;
 public class TableController {
 
     @Autowired
-    private TableRepository tableRepository;
+    private TableService tableService;
 
     @GetMapping
     public List<Table> getAllTables() {
-        return tableRepository.findAll();
+        return tableService.getAllTables();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Table> getTableById(@PathVariable Long id) {
+        Optional<Table> table = tableService.getTableById(id);
+        return table.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public Table createTable(@RequestBody Table table) {
+        return tableService.createTable(table);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Table> updateTableStatus(@PathVariable Long id, @RequestBody Table tableDetails) {
-        Optional<Table> optionalTable = tableRepository.findById(id);
-        if (optionalTable.isPresent()) {
-            Table table = optionalTable.get();
-            table.setAvailable(tableDetails.isAvailable());
-            tableRepository.save(table);
-            return ResponseEntity.ok(table);
+    public ResponseEntity<Table> updateTable(@PathVariable Long id, @RequestBody Table tableDetails) {
+        Optional<Table> updatedTable = tableService.updateTable(id, tableDetails);
+        return updatedTable.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTable(@PathVariable Long id) {
+        if (tableService.deleteTable(id)) {
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }
